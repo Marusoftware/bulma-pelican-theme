@@ -1,18 +1,19 @@
-<article class="message {% for cat in CATS_STYLE %}{% if article.category == cat %}{{ CATS_STYLE[cat] }}{% endif %}{% endfor %}">
-	<div class="message-header">
-		<p>{{ article.category }}</p>
-	</div>
-	<div class="message-body">
-		<div class="columns is-multiline">
-			<div class="column is-one-quarter has-text-centered">
-				<p><time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></p>
-				<p>{% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}"><span class="tag is-link">{{ tag }}</span></a> {% endfor %}</p>
-			</div>
-			<div class="column">
-				<h2 class="is-size-5"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
-				{% if article.extract %}<p class="has-text-dark">{{ article.extract }}</p>{% endif %}
-			</div>
+<div class="box {% for cat in CATS_STYLE %}{% if article.category == cat %}{{ CATS_STYLE[cat] }}{% endif %}{% endfor %}">
+	<article class="media">
+	  <div class="media-left">
+		<figure class="image is-48x48">
+			<img src="{{ article.author_avatar }}" alt="Avatar image">
+		</figure>
+	  </div>
+	  <div class="media-content">
+		<div class="content">
+			<h2 class="is-size-5"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+		  <p>
+			<strong><a href="{{ article.author.url }}">{{ article.author }}</a></strong> {% if article.author_avatar %}<small>{{ article.email }}</small>{% endif %} <small><time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">{{ article.date.ctime() }}</time></small>
+			<br /> <p>Tags: {% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}"><span class="tag is-link">{{ tag }}</span></a> {% endfor %} Category: <a href="{{ article.category.url }}">{{ article.category }}</p>
+		  </p>
 		</div>
-	</div>
-</article>
+	  </div>
+	</article>
+</div>
 
