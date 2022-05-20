@@ -19,6 +19,9 @@
 		{% endif %}
 		<title>{% block title %}{{ SITENAME|striptags|e }}{% endblock title %}</title>
 		<link rel="stylesheet" type="text/css" href="{{ main_siteurl }}/theme/css/style.min.css">
+		{% if FAVICON %}
+			<link rel="icon" type="{{ FAVICON_TYPE }}" href="{{ SITEURL }}/{{ FAVICON }}">
+		{% endif %}
 		<script src="{{ main_siteurl }}/theme/js/menu.js"></script>
 		<!-- Pending to improve -->
 		{% if MATOMO %}
