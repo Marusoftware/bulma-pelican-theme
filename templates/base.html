@@ -27,6 +27,8 @@
 		{% if MATOMO %}
 			{{ MATOMO }}
 		{% endif %}
+		<link rel="stylesheet" href="https://files.stork-search.net/basic.css" />
+		<script src="https://kit.fontawesome.com/4487b0ebab.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		{% block navbar %}
@@ -77,6 +79,17 @@
 				</div>
 				<div class="navbar-end">
 					<div class="navbar-item">
+						<div class="field">
+							<p class="control has-icons-left">
+								<input class="input" data-stork="sitesearch" placeholder="Search" />
+							  <span class="icon is-small is-left">
+								<i class="fas fa-search"></i>
+							  </span>
+							</p>
+						  </div>
+						
+					</div>
+					<div class="navbar-item">
 						<div class="buttons">
 							{% for item, link, style in MENUITEMS_NAVBAR_FEATURED %}
 								<a class="button {{ style }}" href="{{ link }}">{{ item }}</a>
@@ -87,12 +100,17 @@
 			</div>
 			</nav>
 		{% endblock navbar %}
+		<div data-stork="sitesearch-output"></div>
 		<section class="section">
 			<div class="container">
 				{% block content %}
 				{% endblock content %}
 			</div>
 		</section>
+		<script src="https://files.stork-search.net/releases/v1.2.1/stork.js"></script>
+		<script>
+			stork.register("sitesearch", "{{ SITEURL }}/search-index.st")
+		</script>
 		<footer class="footer">
 			<div class="container has-text-centered">
 				<div class="columns">
