@@ -5,10 +5,22 @@
 {% endblock title %}
 
 {% block content %}
-<article class="message is-info">
-	<div class="message-header">
-		{{ page.title }}
+<div class="card">
+	<div class="card-content">
+	<div class="media">
+		<div class="media-left">
+		<figure class="image is-48x48">
+			{% if page.author_avatar %}<img src="{{ article.author_avatar }}" alt="Avatar image">{% endif %}
+		</figure>
+		</div>
+		<div class="media-content">
+		<p class="title is-4">{{ page.title }}</p>
+		<p class="subtitle is-6"><a href="{{ page.author.url }}">{{ page.author }}</a> {% if page.email %}{{ page.email }}{% endif %} <time itemprop="dateCreated" datetime="{{ page.date.isoformat() }}">{{ page.date.ctime() }}</time></p>
+		</div>
 	</div>
+	</div>
+</div>
+<article class="message is-info">
 	<div class="message-body has-text-dark">
 		{{ page.content }}
 	</div>
